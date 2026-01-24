@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "jupyterlab>=4.5.1",
+    "loguru>=0.7.3",
     "matplotlib>=3.10.8",
     "numpy<2.0.0",
     "pandas>=2.3.3",
@@ -15,3 +16,20 @@ dependencies = [
     "triton>=3.5.1",
     "triton-util>=0.0.2",
 ]
+
+[tool.pytest.ini_options]
+log_level = "INFO"
+addopts = [
+    "--durations=0",    # Show durations of each test
+    "--strict-markers", # Warn if unregistered markers are used
+    "--tb=short",       # Short traceback format
+    "-ra",              # Show all test results summary (failures, skips, etc.)
+    "--showlocals",     # Show local variables on failure
+    "--color=yes",
+    "-vv",
+    "-s"
+]
+testpaths = ["tests"] # Directory containing test files
+python_files = ["test_*.py", "*_test.py"] # Test file patterns
+python_classes = ["Test*"]
+python_functions = ["test_*"]
